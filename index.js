@@ -17,6 +17,9 @@ app.set("view engine","ejs");
 //Css asset
 app.use("/style",express.static("./src/Views/assets/css"));
 //
+//js asset
+app.use("/script",express.static("./src/Views/assets/script"));
+//
 //Route
 app.use("/",require("./src/Route/home"));
 //
