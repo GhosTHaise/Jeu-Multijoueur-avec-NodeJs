@@ -14,6 +14,9 @@ app.use(bodyParser.urlencoded());
 app.set("views","./src/Views/")
 app.set("view engine","ejs");
 //
+//Css asset
+app.use("/style",express.static("./src/Views/assets/css"));
+//
 //Route
 app.use("/",require("./src/Route/home"));
 //
