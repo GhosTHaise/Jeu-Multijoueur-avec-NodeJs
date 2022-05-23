@@ -1,0 +1,6 @@
+@media (orientation:landscape) and (max-width:736px){
+    #MainCanvas{
+        width: 100vw;
+        height: 100vh;
+    }
+}
