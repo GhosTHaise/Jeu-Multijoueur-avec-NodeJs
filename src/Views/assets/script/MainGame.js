@@ -72,4 +72,11 @@ for(let snakeBody of snake){
     i++;
 }
 if(snakeObj[coordToString(snakePart)]) end = true;
+
+while(!food || snakeObj[coordToString(food)]){
+    food = {x : randomFood().x,y : randomFood().y};
+}
+ctx.fillStyle = "#f2d729";
+ctx.fillRect(food.x,food.y,GRID_SIZE,GRID_SIZE);
+ctx.drawEllipse(3,10,10.100,100);
 }
