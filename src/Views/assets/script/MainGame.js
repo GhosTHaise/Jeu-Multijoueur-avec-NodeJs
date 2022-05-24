@@ -5,15 +5,15 @@ const ctx = cvs.getContext('2d');
 //initialiser le grid
 const WIDTH = cvs.width/2,
       HEIGHT = cvs.height/2,
-      NOMBRE_GRID = 2500,
-      GRID_SIZE = Math.sqrt((WIDTH*HEIGHT)/NOMBRE_GRID);
+      NOMBRE_GRID = 5000,
+      GRID_SIZE = Math.sqrt(((WIDTH*HEIGHT)/NOMBRE_GRID));
 //alert("width : "+WIDTH+" | height : "+HEIGHT+" | grid_size : "+GRID_SIZE);
 ctx.scale(2,2);
 //Snake 
 var newDirection;
 var direction = newDirection = 1,
     snakeLength = 5,
-    snake = [{x : 5,y : 5}],
+    snake = [{x : WIDTH/2,y : HEIGHT/2}],
     food = null,
     end = false,
     score = 0;
@@ -92,13 +92,13 @@ const move = () => {
     
 }
 window.onload = () => {
-    setInterval(()=>{
-       tick();
+    setInterval(()=>{ 
+        tick();
        window.onkeydown = (e) => {
         //convertir les touches appuyer en nombre entier
-        console.log(e.keyCode)
+        //console.log(e.keyCode)
         newDirection = {37 : -1,38 : -2,39 : 1,40 : 2,32 : 5}[e.keyCode] || newDirection;
-        console.log(newDirection)
+        //console.log(newDirection)
     }
     },100)
 }
