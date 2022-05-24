@@ -15,5 +15,28 @@ var direction = newDirection = 1,
     snake = [{x : WIDTH / 2,y : HEIGHT / 2}],
     food = null,
     end = false,
-    score = 0
+    score = 0;
 
+//fonction
+
+//Position Aleatoire pour food
+const randomFood = () => {
+    var foodPosition = {};
+    return  foodPosition = {x : Math.floor(Math.random() * WIDTH / GRID_SIZE) * GRID_SIZE,
+                            y : Math.floor(Math.random() * HEIGHT / GRID_SIZE ) * GRID_SIZE
+                        }   
+}
+const tick = () => {
+    var snakePart = {x : snake[0].x,y : snake[0].y};
+    var axis = (Math.abs(direction) === 1) ? 'x' : 'y';
+    if(direction < 0 ){
+        snakePart[axis] -= GRID_SIZE;
+    }else{
+        snakePart[axis] += GRID_SIZE;
+    }
+    if(food && food.x === snakePart.x && food.y === snakePart.y){
+        food = null;
+        snakeLength += 2;
+        score ++;
+    }
+}
