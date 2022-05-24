@@ -39,4 +39,28 @@ const tick = () => {
         snakeLength += 2;
         score ++;
     }
+ctx.fillStyle = "#22424a";
+ctx.fillRect(0,0,WIDTH,HEIGHT);
+//game over
+if(end){
+    ctx.fillStyle = "#e8dbb0";
+    ctx.font = "1rem Monospace";
+    ctx.textAlign = "center"
+    ctx.fillText("Game Over  - Score : "+score,WIDTH/2,HEIGHT /2);
+    ctx.fillText("SPACE to Continue",WIDTH / 2,(HEIGHT /2)+75);
+}else{
+    snake.unshift(snakePart);
+    snake = snake.slice(0,snakeLength);
+    ctx.fillStyle = "#e8dbb0";
+    ctx.font = "0.6rem Monospace";
+    ctx.fillText("Score : "+score.toString(10),5,20);
+}
+if(snakePart.x < 0 || snakePart.x > WIDTH || snakePart.y < 0 || snakePart.y > HEIGHT){
+    end = true;
+}
+//draw the snake
+for(let snakeBody of snake){
+    ctx.fillRect(snakeBody.x,snakeBody.y,GRID_SIZE-1,GRID_SIZE -1);
+
+}
 }
