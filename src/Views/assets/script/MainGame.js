@@ -3,9 +3,9 @@ const cvs = document.getElementById('MainCanvas');
 const ctx = cvs.getContext('2d');
 
 //initialiser le grid
-const WIDTH = cvs.width,
-      HEIGHT = cvs.height,
-      NOMBRE_GRID = 5000,
+const WIDTH = cvs.width/2,
+      HEIGHT = cvs.height/2,
+      NOMBRE_GRID = 2500,
       GRID_SIZE = Math.sqrt((WIDTH*HEIGHT)/NOMBRE_GRID);
 //alert("width : "+WIDTH+" | height : "+HEIGHT+" | grid_size : "+GRID_SIZE);
 ctx.scale(2,2);
@@ -13,7 +13,7 @@ ctx.scale(2,2);
 var newDirection;
 var direction = newDirection = 1,
     snakeLength = 5,
-    snake = [{x : WIDTH / 2,y : HEIGHT / 2}],
+    snake = [{x : 5,y : 5}],
     food = null,
     end = false,
     score = 0;
@@ -34,6 +34,9 @@ const coordToString = (obj) => {
 
 const tick = () => {
     var snakePart = {x : snake[0].x,y : snake[0].y};
+    if(Math.abs(direction) !== Math.abs(newDirection)){
+        direction = newDirection;
+    }
     var axis = (Math.abs(direction) === 1) ? 'x' : 'y';
     if(direction < 0 ){
         snakePart[axis] -= GRID_SIZE;
@@ -54,6 +57,9 @@ if(end){
     ctx.textAlign = "center"
     ctx.fillText("Game Over  - Score : "+score,WIDTH/2,HEIGHT /2);
     ctx.fillText("SPACE to Continue",WIDTH / 2,(HEIGHT /2)+75);
+    if(newDirection == 5){
+        location.reload();
+    }
 }else{
     snake.unshift(snakePart);
     snake = snake.slice(0,snakeLength);
@@ -65,7 +71,7 @@ if(snakePart.x < 0 || snakePart.x > WIDTH || snakePart.y < 0 || snakePart.y > HE
     end = true;
 }
 //draw the snake
-ctx.fillStyle("#15b31b")
+ctx.fillStyle = "#15b31b";
 var i =0,
     snakeObj = {};
 for(let snakeBody of snake){
@@ -90,7 +96,9 @@ window.onload = () => {
        tick();
        window.onkeydown = (e) => {
         //convertir les touches appuyer en nombre entier
-        newDirection = {37 : -1,38 : -2,39 : 1,40 : 2,32 : 5}[e.keyCode] || newDirection
+        console.log(e.keyCode)
+        newDirection = {37 : -1,38 : -2,39 : 1,40 : 2,32 : 5}[e.keyCode] || newDirection;
+        console.log(newDirection)
     }
     },100)
 }
