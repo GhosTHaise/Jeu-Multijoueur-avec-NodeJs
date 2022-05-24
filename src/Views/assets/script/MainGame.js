@@ -5,6 +5,7 @@ const ctx = cvs.getContext('2d');
 //initialiser le grid
 const WIDTH = cvs.width/2,
       HEIGHT = cvs.height/2,
+      //change NOMBRE_GRID if you want it bigger
       NOMBRE_GRID = 5000,
       GRID_SIZE = Math.sqrt(((WIDTH*HEIGHT)/NOMBRE_GRID));
 //alert("width : "+WIDTH+" | height : "+HEIGHT+" | grid_size : "+GRID_SIZE);
@@ -52,6 +53,7 @@ ctx.fillStyle = "#22424a";
 ctx.fillRect(0,0,WIDTH,HEIGHT);
 //game over
 if(end){
+    clearInterval();
     ctx.fillStyle = "#e8dbb0";
     ctx.font = "1rem Monospace";
     ctx.textAlign = "center"
@@ -76,7 +78,7 @@ var i =0,
     snakeObj = {};
 for(let snakeBody of snake){
     ctx.fillRect(snakeBody.x,snakeBody.y,GRID_SIZE-1,GRID_SIZE -1);
-    if(i > 0) snakeObj[coordToString(snakeBody)] == true;
+    if(i > 0) snakeObj[coordToString(snakeBody)] = true;
     i++;
 }
 if(snakeObj[coordToString(snakePart)]) end = true;
@@ -92,13 +94,16 @@ const move = () => {
     
 }
 window.onload = () => {
-    setInterval(()=>{ 
+    var frame = setInterval(()=>{ 
         tick();
        window.onkeydown = (e) => {
         //convertir les touches appuyer en nombre entier
         //console.log(e.keyCode)
         newDirection = {37 : -1,38 : -2,39 : 1,40 : 2,32 : 5}[e.keyCode] || newDirection;
         //console.log(newDirection)
+    }
+    if(end){
+        clearInterval(frame);
     }
     },100)
 }
