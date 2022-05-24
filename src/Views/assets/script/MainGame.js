@@ -10,6 +10,7 @@ const WIDTH = cvs.width,
 //alert("width : "+WIDTH+" | height : "+HEIGHT+" | grid_size : "+GRID_SIZE);
 ctx.scale(2,2);
 //Snake 
+var newDirection;
 var direction = newDirection = 1,
     snakeLength = 5,
     snake = [{x : WIDTH / 2,y : HEIGHT / 2}],
@@ -64,6 +65,7 @@ if(snakePart.x < 0 || snakePart.x > WIDTH || snakePart.y < 0 || snakePart.y > HE
     end = true;
 }
 //draw the snake
+ctx.fillStyle("#15b31b")
 var i =0,
     snakeObj = {};
 for(let snakeBody of snake){
@@ -78,5 +80,17 @@ while(!food || snakeObj[coordToString(food)]){
 }
 ctx.fillStyle = "#f2d729";
 ctx.fillRect(food.x,food.y,GRID_SIZE,GRID_SIZE);
-ctx.drawEllipse(3,10,10.100,100);
+
+}
+const move = () => {
+    
+}
+window.onload = () => {
+    setInterval(()=>{
+       tick();
+       window.onkeydown = (e) => {
+        //convertir les touches appuyer en nombre entier
+        newDirection = {37 : -1,38 : -2,39 : 1,40 : 2,32 : 5}[e.keyCode] || newDirection
+    }
+    },100)
 }
