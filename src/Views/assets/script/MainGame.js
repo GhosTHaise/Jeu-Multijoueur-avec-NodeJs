@@ -13,7 +13,7 @@ ctx.scale(2,2);
 //Snake 
 var newDirection;
 var direction = newDirection = 1,
-    snakeLength = 5,
+    snakeLength = 305,
     snake = [{x : WIDTH/2,y : HEIGHT/2}],
     food = null,
     end = false,
@@ -33,7 +33,7 @@ const coordToString = (obj) => {
     return [obj.x,obj.y].join(',');
 }
 
-const tick = () => {
+const tick = (_frame) => {
     var snakePart = {x : snake[0].x,y : snake[0].y};
     if(Math.abs(direction) !== Math.abs(newDirection)){
         direction = newDirection;
@@ -48,20 +48,21 @@ const tick = () => {
         food = null;
         snakeLength += 2;
         score ++;
-    }
+    };
 ctx.fillStyle = "#22424a";
 ctx.fillRect(0,0,WIDTH,HEIGHT);
 //game over
 if(end){
-    clearInterval();
     ctx.fillStyle = "#e8dbb0";
     ctx.font = "1rem Monospace";
-    ctx.textAlign = "center"
+    ctx.textAlign = "center";
     ctx.fillText("Game Over  - Score : "+score,WIDTH/2,HEIGHT /2);
     ctx.fillText("SPACE to Continue",WIDTH / 2,(HEIGHT /2)+75);
+    
     if(newDirection == 5){
         location.reload();
     }
+    clearInterval(_frame);
 }else{
     snake.unshift(snakePart);
     snake = snake.slice(0,snakeLength);
@@ -95,15 +96,12 @@ const move = () => {
 }
 window.onload = () => {
     var frame = setInterval(()=>{ 
-        tick();
+        tick(frame);
        window.onkeydown = (e) => {
         //convertir les touches appuyer en nombre entier
         //console.log(e.keyCode)
         newDirection = {37 : -1,38 : -2,39 : 1,40 : 2,32 : 5}[e.keyCode] || newDirection;
         //console.log(newDirection)
-    }
-    if(end){
-        clearInterval(frame);
-    }
+    };
     },100)
 }
