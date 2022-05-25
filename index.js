@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require('path');
+const favicon = require('serve-favicon')
 const app  = new express();
 const port = process.env.port || 5050; 
 //Import Router
@@ -14,6 +16,7 @@ app.use(bodyParser.urlencoded());
 app.set("views","./src/Views/")
 app.set("view engine","ejs");
 //
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 //Css asset
 app.use("/style",express.static("./src/Views/assets/css"));
 //
