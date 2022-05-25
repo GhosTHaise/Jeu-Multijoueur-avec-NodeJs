@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app  = new express();
-const port = process.env.port || 4001; 
+const port = process.env.port || 5050; 
 //Import Router
 
 //
@@ -21,7 +21,7 @@ app.use("/style",express.static("./src/Views/assets/css"));
 app.use("/script",express.static("./src/Views/assets/script"));
 //
 //Route
-app.use("/",require("./src/Route/home"));
+app.use("/home",require("./src/Route/home"));
 //
 
 app.listen(port,()=>{
