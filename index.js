@@ -16,7 +16,9 @@ app.use(bodyParser.urlencoded());
 app.set("views","./src/Views/")
 app.set("view engine","ejs");
 //
-
+app.get('/favicon.ico', (req, res) => (
+    res.status(200).sendFile('favicon.ico', {root: __dirname + '/static/'})
+));
 app.use(favicon(path.join(__dirname, '', 'favicon.ico')))
 //Css asset
 app.use("/style",express.static("./src/Views/assets/css"));
@@ -25,7 +27,7 @@ app.use("/style",express.static("./src/Views/assets/css"));
 app.use("/script",express.static("./src/Views/assets/script"));
 //
 //Route
-app.use("/ico",express.static("./src/Views/assets/Icon/icons8-ghost-64.png"));
+app.use("/favicon.ico",express.static("./src/Views/assets/Icon/icons8-ghost-64.png"));
 app.use("/home",require("./src/Route/home"));
 //
 //Asset  - Icon
