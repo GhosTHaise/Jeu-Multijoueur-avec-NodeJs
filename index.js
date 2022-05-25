@@ -27,6 +27,7 @@ app.use("/style",express.static("./src/Views/assets/css"));
 app.use("/script",express.static("./src/Views/assets/script"));
 //
 //Route
+app.get('/about', (req, res) => res.send('About Page Route'));
 app.use("/favicon.ico",express.static("./src/Views/assets/Icon/icons8-ghost-64.png"));
 app.use("/",require("./src/Route/home"));
 //
