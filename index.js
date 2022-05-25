@@ -23,7 +23,9 @@ app.use("/script",express.static("./src/Views/assets/script"));
 //Route
 app.use("/home",require("./src/Route/home"));
 //
-
+//Asset  - Icon
+app.use("/icon",express.static("./src/Views/assets/Icon"));
+//
 app.listen(port,()=>{
     console.log("application start on http://localhost:"+port);
 })
