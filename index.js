@@ -28,3 +28,4 @@ app.listen(port,()=>{
     console.log("application start on http://localhost:"+port);
 })
 
+module.exports = app;
