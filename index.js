@@ -16,7 +16,10 @@ app.use(bodyParser.urlencoded());
 app.set("views","./src/Views/")
 app.set("view engine","ejs");
 //
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+app.get('/favicon.ico', (req, res) => (
+    res.status(200).sendFile('favicon.ico', {root: __dirname + '/static/'})
+));
+app.use(favicon(path.join(__dirname, '', 'favicon.ico')))
 //Css asset
 app.use("/style",express.static("./src/Views/assets/css"));
 //
