@@ -21,12 +21,13 @@ app.use("/style",express.static("./src/Views/assets/css"));
 app.use("/script",express.static("./src/Views/assets/script"));
 //
 //Route
+app.use("/favicon.ico",express.static("./src/Views/assets/Icon/icons8-ghost-64.png"));
 app.use("/home",require("./src/Route/home"));
 //
 //Asset  - Icon
 app.use("/icon",express.static("./src/Views/assets/Icon"));
 //
-app.use("/favicon.ico",express.static("./src/Views/assets/Icon/icons8-ghost-64.png"));
+
 
 app.listen(port,()=>{
     console.log("application start on http://localhost:"+port);
