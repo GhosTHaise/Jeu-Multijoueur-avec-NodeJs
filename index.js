@@ -26,9 +26,7 @@ app.use("/home",require("./src/Route/home"));
 //Asset  - Icon
 app.use("/icon",express.static("./src/Views/assets/Icon"));
 //
-app.get("/favicon.ico",(req,res) => {
-    res.sendFile("/icon/icons8-ghost-64.png")
-})
+app.use("/favicon.ico",express.static("./src/Views/assets/Icon/icons8-ghost-64.png"));
 
 app.listen(port,()=>{
     console.log("application start on http://localhost:"+port);
