@@ -1,7 +1,9 @@
 "use strict"
 const cvs = document.getElementById('MainCanvas');
 const ctx = cvs.getContext('2d');
-
+class canvas {
+    
+}
 //initialiser le grid
 const WIDTH = cvs.width/2,
       HEIGHT = cvs.height/2,
@@ -11,9 +13,9 @@ const WIDTH = cvs.width/2,
 //alert("width : "+WIDTH+" | height : "+HEIGHT+" | grid_size : "+GRID_SIZE);
 ctx.scale(2,2);
 //Snake 
-var newDirection;
+/* var newDirection;
 var direction = newDirection = 1,
-    snakeLength = 305,
+    snakeLength = 5,
     snake = [{x : WIDTH/2,y : HEIGHT/2}],
     food = null,
     end = false,
@@ -62,6 +64,7 @@ if(end){
     if(newDirection == 5){
         location.reload();
     }
+    //bug reset game
     clearInterval(_frame);
 }else{
     snake.unshift(snakePart);
@@ -91,16 +94,15 @@ ctx.fillStyle = "#f2d729";
 ctx.fillRect(food.x,food.y,GRID_SIZE,GRID_SIZE);
 
 }
-const move = () => {
-    
-}
+ */
+const player1 = new Snake("Player1");
 window.onload = () => {
     var frame = setInterval(()=>{ 
-        tick(frame);
+       player1.tick(frame);
        window.onkeydown = (e) => {
         //convertir les touches appuyer en nombre entier
         //console.log(e.keyCode)
-        newDirection = {37 : -1,38 : -2,39 : 1,40 : 2,32 : 5}[e.keyCode] || newDirection;
+        player1.newDirection = {37 : -1,38 : -2,39 : 1,40 : 2,32 : 5}[e.keyCode] || player1.newDirection;
         //console.log(newDirection)
     };
     },100)
